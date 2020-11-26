@@ -1,0 +1,325 @@
+{
+	"compiler": {
+		"version": "0.7.4+commit.3f05b770"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "aAdmins",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "contr",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "disabledBy",
+						"type": "address"
+					}
+				],
+				"name": "ContractDisabled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "contr",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "updatedBy",
+						"type": "address"
+					}
+				],
+				"name": "ContractUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "contr",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "validatedBy",
+						"type": "address"
+					}
+				],
+				"name": "NewContract",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "aNewAdmin",
+						"type": "address"
+					}
+				],
+				"name": "AdminAdd",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "aOldAdmin",
+						"type": "address"
+					}
+				],
+				"name": "AdminDelete",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "aAdr",
+						"type": "address"
+					}
+				],
+				"name": "AdminIsValid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "aContr",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "aSource",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "aMetadata",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "aHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "ContractAdd",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "aContr",
+						"type": "address"
+					}
+				],
+				"name": "ContractDisable",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "aContr",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "aSource",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "aMetadata",
+						"type": "string"
+					}
+				],
+				"name": "ContractUdate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "aSourceBase",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "aMetadataBase",
+						"type": "string"
+					}
+				],
+				"name": "ServerAdd",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ServerCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "aSourceBase",
+						"type": "string"
+					}
+				],
+				"name": "ServerDelete",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "contractRegister",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "source",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "enabled",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "servers",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "sourceBase",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "metadataBase",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/Fantom-Contract-Validation/contracts/ ContractRepository.sol": "ContractRepository"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/Fantom-Contract-Validation/contracts/ ContractRepository.sol": {
+			"keccak256": "0x55dad39013c89ee4e16b60228771051bef5bcf3f058f0489aa3af8a22a2e4b8d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b78d1c6809c203fe1ae0a258af28b50a3c5fb38810c67bafbde779460b958dfb",
+				"dweb:/ipfs/QmP5pW2UW7gyQZShGeCvENrF5m266Dm5EXNwKDtz3JEfww"
+			]
+		}
+	},
+	"version": 1
+}

@@ -4,15 +4,6 @@ pragma solidity >=0.6.0 <0.8.0;
 // repository of validated smart contracts
 contract ContractRepository {
     
-    // contract information
-    struct ContractInfo {
-        // address validatedBy;    // who registered the contract
-        bytes32 hash;           // source code hash
-        string source;          // source code location
-        string metadata;        // metadata location
-        bool enabled;           // is the contract still enabled?
-    }
-    
     // storage on the server
     struct ServerABI {
         string sourceBase;      // e.g. "https://explorer.fantom.network/contracts/source/"
@@ -22,7 +13,11 @@ contract ContractRepository {
     ServerABI public server;    // one server is enough
     
     // register of contracts
-    mapping(address => ContractInfo) public contractRegister;
+    // It is enough to record only the hash of the source code about the contract.
+    // Additional data (source code, metadata and more) do not need to be stored here.
+    // Ie. the registered contract has a source code hash stored.
+    // Use: contractRegister[<contract address>] == <source code hash of the contract>
+    mapping(address => bytes32) public contractRegister;
     
     // allowed addresses of admins who can make changes
     mapping(address => bool) internal validAdmins;
@@ -35,8 +30,7 @@ contract ContractRepository {
     
     // events
     event NewContract(address indexed contr, address validatedBy);
-    event ContractUpdated(address indexed contr, address updatedBy);
-    event ContractDisabled(address indexed contr, address disabledBy);
+    event ContractDeleted(address indexed contr, address deletedBy);
     
     // creating a contract register
     // who creates is automatically an admin, other admins can be added in the parameter
@@ -84,54 +78,20 @@ contract ContractRepository {
     /* function for working with the contract register */
 
     // adds a new contract to the list
-    function ContractAdd(address aContr, 
-        string memory aSource,
-        string memory aMetadata,
-        bytes32 aHash
-    ) public onlyAdmin {
-        ContractInfo storage ci = contractRegister[aContr];
-        //require(ci.validatedBy == address(0), "The contract has already been registered.");
-        require(bytes(ci.source).length == 0, "The contract has already been registered.");
-        require(bytes(aSource).length != 0, "The new contract must have source code.");
-        //ci.validatedBy = msg.sender; 
-        ci.source = aSource;    
-        ci.metadata = aMetadata;       
-        ci.hash = aHash;
-        ci.enabled = true;
+    function ContractAdd(address aContr, bytes32 aHash) public onlyAdmin {
+        require(contractRegister[aContr] == 0x0, "The contract has already been registered.");
+        require(aHash != 0x0, "The new contract must have source code hash.");
+        contractRegister[aContr] = aHash;
 
         emit NewContract(aContr, msg.sender);
-   }
-
-    // update source code and metadata locations
-    // an empty string does not update the original value
-    function ContractUdate(address aContr, string memory aSource, string memory aMetadata) public onlyAdmin { 
-        ContractInfo storage ci = contractRegister[aContr];
-        //require(ci.validatedBy != address(0), "The contract does not exist.");
-        require(bytes(ci.source).length != 0, "The contract does not exist.");
-        require(ci.enabled, "The contract is already disabled");
-        bool updated = false;
-        if ((bytes(aSource).length != 0) && (keccak256(abi.encodePacked(aSource)) != keccak256(abi.encodePacked(ci.source)))) {
-            ci.source = aSource;
-            updated = true;
-        }
-        if ((bytes(aMetadata).length != 0) && (keccak256(abi.encodePacked(aMetadata)) != keccak256(abi.encodePacked(ci.metadata)))) {
-            ci.metadata = aMetadata;
-            updated = true;
-        }
-        require(updated, "There is nothing to update in the contract.");
-
-        emit ContractUpdated(aContr, msg.sender);
     }
 
-    // disable the contract
-    function ContractDisable(address aContr) public onlyAdmin {
-        ContractInfo storage ci = contractRegister[aContr];
-        //require(ci.validatedBy != address(0), "The contract does not exist.");
-        require(bytes(ci.source).length != 0, "The contract does not exist.");
-        require(ci.enabled, "The contract is already disabled");
-        ci.enabled = false;
+    // delete the contract
+    function ContractDelete(address aContr) public onlyAdmin {
+        require(contractRegister[aContr] != 0x0, "The contract does not exist.");
+        contractRegister[aContr] = 0x0;
 
-        emit ContractDisabled(aContr, msg.sender);
+        emit ContractDeleted(aContr, msg.sender);
     }
     
 }

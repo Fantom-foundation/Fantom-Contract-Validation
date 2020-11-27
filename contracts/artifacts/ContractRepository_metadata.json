@@ -28,30 +28,11 @@
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "disabledBy",
+						"name": "deletedBy",
 						"type": "address"
 					}
 				],
-				"name": "ContractDisabled",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "contr",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "updatedBy",
-						"type": "address"
-					}
-				],
-				"name": "ContractUpdated",
+				"name": "ContractDeleted",
 				"type": "event"
 			},
 			{
@@ -126,16 +107,6 @@
 						"type": "address"
 					},
 					{
-						"internalType": "string",
-						"name": "aSource",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "aMetadata",
-						"type": "string"
-					},
-					{
 						"internalType": "bytes32",
 						"name": "aHash",
 						"type": "bytes32"
@@ -154,30 +125,7 @@
 						"type": "address"
 					}
 				],
-				"name": "ContractDisable",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "aContr",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "aSource",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "aMetadata",
-						"type": "string"
-					}
-				],
-				"name": "ContractUdate",
+				"name": "ContractDelete",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -212,23 +160,8 @@
 				"outputs": [
 					{
 						"internalType": "bytes32",
-						"name": "hash",
+						"name": "",
 						"type": "bytes32"
-					},
-					{
-						"internalType": "string",
-						"name": "source",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "metadata",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "enabled",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -281,11 +214,11 @@
 	},
 	"sources": {
 		"localhost/Fantom-Contract-Validation/contracts/ ContractRepository.sol": {
-			"keccak256": "0x7481b8d29146b807154ae1ff20e676cb9d312e32338787b40e79e32bcacbc7ad",
+			"keccak256": "0x829de23fad3d4e8833a862be94cf422f5a1197f270c4c775bca53eb4a1b6493d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3853305c0700342adf1104cdfd8ffc81e9f0f9ff73d1a448ab7baca84063e8c3",
-				"dweb:/ipfs/QmYP96wCzsL4QrFe5QinoK7cW8WQbNoRN7A7xHS56WpRnF"
+				"bzz-raw://b0494733c8f69ea86d51449ca208a810e4a1693b2e3569ebd0e38caa02906ca5",
+				"dweb:/ipfs/QmUKV9TEz6ZV9F7jPS69cGtfELmNcw56Gvef93TpN67YQ3"
 			]
 		}
 	},

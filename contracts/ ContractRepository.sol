@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.7.4 <0.8.0;
+pragma solidity >=0.6.0 <0.8.0;
 
 // repository of validated smart contracts
 contract ContractRepository {
@@ -19,7 +19,7 @@ contract ContractRepository {
         string metadataBase;    // e.g. "https://explorer.fantom.network/contracts/metadata/"
     }
     
-    ServerABI[] public servers; // optimize from array to one 
+    ServerABI public server;    // one server is enough
     
     // register of contracts
     mapping(address => ContractInfo) public contractRegister;
@@ -46,10 +46,9 @@ contract ContractRepository {
             validAdmins[aAdmins[i]] = true;
         }
 
-        // initialization of the first server
-        ServerABI storage s = servers.push();
-        s.sourceBase = "https://explorer.fantom.network/contracts/source/";     // for example
-        s.metadataBase = "https://explorer.fantom.network/contracts/metadata/"; // for example
+        // initialization of the server
+        server.sourceBase = "https://explorer.fantom.network/contracts/source/";     // for example
+        server.metadataBase = "https://explorer.fantom.network/contracts/metadata/"; // for example
     }
     
     /* functions for working with the admin list */
@@ -74,46 +73,12 @@ contract ContractRepository {
     
     /* functions for working with servers */
     
-    // function for adding a new server
-    function ServerAdd(string memory aSourceBase, string memory aMetadataBase) public onlyAdmin {
-        // the server must no longer exist
-        int index = ServerIndex(aSourceBase);
-        require(index < 0, "The server already exists.");
-        // add a new server
-        ServerABI storage s = servers.push();
-        s.sourceBase = aSourceBase;
-        s.metadataBase = aMetadataBase;
-    }
-    
-    // server removal function
-    function ServerDelete(string memory aSourceBase) public onlyAdmin {
-        // the server must exist
-        int index = ServerIndex(aSourceBase);
-        require(index >= 0, "The server does not exist.");
-        // if it is not the last, then the last server is moved to the site of the jam
-        if (uint(index) != servers.length - 1) {
-            servers[uint(index)] = servers[servers.length - 1];
-        }
-        servers.pop();  // cancel the last
-    }
-
-    // finds the server index in the servers field
-    // if not found, return -1
-    function ServerIndex(string memory aSourceBase) internal view returns (int index) {
-        index = -1;
-        bytes32 sbHash = keccak256(abi.encodePacked(aSourceBase));
-        for (uint i = 0; i < servers.length; i++) {
-            //if (keccak256(abi.encodePacked(servers[i].sourceBase)) == keccak256(abi.encodePacked(aSourceBase))) {
-            if (keccak256(abi.encodePacked(servers[i].sourceBase)) == sbHash) {
-                index = int(i);
-                break;
-            }
-        }
-    }
-
-    // returns the number of servers
-    function ServerCount() public view returns (uint) {
-        return(servers.length);
+    // update server locations
+    function ServerUpdate(string memory aSourceBase, string memory aMetadataBase) public onlyAdmin {
+        require(bytes(aSourceBase).length != 0, "The server must have a specified source code location.");
+        require(bytes(aMetadataBase).length != 0, "The server must have a specified metadata location.");
+        server.sourceBase = aSourceBase;
+        server.metadataBase = aMetadataBase;
     }
     
     /* function for working with the contract register */

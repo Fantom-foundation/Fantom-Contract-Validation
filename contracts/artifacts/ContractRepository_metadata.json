@@ -195,33 +195,7 @@
 						"type": "string"
 					}
 				],
-				"name": "ServerAdd",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "ServerCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "aSourceBase",
-						"type": "string"
-					}
-				],
-				"name": "ServerDelete",
+				"name": "ServerUpdate",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -261,14 +235,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "servers",
+				"inputs": [],
+				"name": "server",
 				"outputs": [
 					{
 						"internalType": "string",
@@ -313,11 +281,11 @@
 	},
 	"sources": {
 		"localhost/Fantom-Contract-Validation/contracts/ ContractRepository.sol": {
-			"keccak256": "0x55dad39013c89ee4e16b60228771051bef5bcf3f058f0489aa3af8a22a2e4b8d",
+			"keccak256": "0x7481b8d29146b807154ae1ff20e676cb9d312e32338787b40e79e32bcacbc7ad",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b78d1c6809c203fe1ae0a258af28b50a3c5fb38810c67bafbde779460b958dfb",
-				"dweb:/ipfs/QmP5pW2UW7gyQZShGeCvENrF5m266Dm5EXNwKDtz3JEfww"
+				"bzz-raw://3853305c0700342adf1104cdfd8ffc81e9f0f9ff73d1a448ab7baca84063e8c3",
+				"dweb:/ipfs/QmYP96wCzsL4QrFe5QinoK7cW8WQbNoRN7A7xHS56WpRnF"
 			]
 		}
 	},

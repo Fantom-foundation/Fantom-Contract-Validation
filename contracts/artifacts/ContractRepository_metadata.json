@@ -133,24 +133,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "aSourceBase",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "aMetadataBase",
-						"type": "string"
-					}
-				],
-				"name": "ServerUpdate",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
@@ -162,24 +144,6 @@
 						"internalType": "bytes32",
 						"name": "",
 						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "server",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "sourceBase",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "metadataBase",
-						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -214,11 +178,11 @@
 	},
 	"sources": {
 		"localhost/Fantom-Contract-Validation/contracts/ ContractRepository.sol": {
-			"keccak256": "0x829de23fad3d4e8833a862be94cf422f5a1197f270c4c775bca53eb4a1b6493d",
+			"keccak256": "0xe6774081f719bb501a326438528fd50c92239a910a37e743a9a40a539a3e690b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b0494733c8f69ea86d51449ca208a810e4a1693b2e3569ebd0e38caa02906ca5",
-				"dweb:/ipfs/QmUKV9TEz6ZV9F7jPS69cGtfELmNcw56Gvef93TpN67YQ3"
+				"bzz-raw://41c033f12331751476f16e9adada18bb2e22c6ed4eccf66233435dec9e8b53b3",
+				"dweb:/ipfs/QmXBSB5gD7uT3gJNd8BPH2VAMLgrDgewDcwY6F5yWU2nri"
 			]
 		}
 	},

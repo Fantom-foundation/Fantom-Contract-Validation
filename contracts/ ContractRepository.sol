@@ -4,14 +4,6 @@ pragma solidity >=0.6.0 <0.8.0;
 // repository of validated smart contracts
 contract ContractRepository {
     
-    // storage on the server
-    struct ServerABI {
-        string sourceBase;      // e.g. "https://explorer.fantom.network/contracts/source/"
-        string metadataBase;    // e.g. "https://explorer.fantom.network/contracts/metadata/"
-    }
-    
-    ServerABI public server;    // one server is enough
-    
     // register of contracts
     // It is enough to record only the hash of the source code about the contract.
     // Additional data (source code, metadata and more) do not need to be stored here.
@@ -39,10 +31,6 @@ contract ContractRepository {
         for (uint i = 0; i < aAdmins.length; i++) {
             validAdmins[aAdmins[i]] = true;
         }
-
-        // initialization of the server
-        server.sourceBase = "https://explorer.fantom.network/contracts/source/";     // for example
-        server.metadataBase = "https://explorer.fantom.network/contracts/metadata/"; // for example
     }
     
     /* functions for working with the admin list */
@@ -63,16 +51,6 @@ contract ContractRepository {
     // anyone can ask, not just the admin
     function AdminIsValid(address aAdr) public view returns (bool) {
         return(validAdmins[aAdr]);    
-    }
-    
-    /* functions for working with servers */
-    
-    // update server locations
-    function ServerUpdate(string memory aSourceBase, string memory aMetadataBase) public onlyAdmin {
-        require(bytes(aSourceBase).length != 0, "The server must have a specified source code location.");
-        require(bytes(aMetadataBase).length != 0, "The server must have a specified metadata location.");
-        server.sourceBase = aSourceBase;
-        server.metadataBase = aMetadataBase;
     }
     
     /* function for working with the contract register */
